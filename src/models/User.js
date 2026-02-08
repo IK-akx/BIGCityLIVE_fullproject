@@ -14,12 +14,12 @@ const userSchema = new mongoose.Schema(
 );
 
 // Hash password before saving (only if changed)
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
+userSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
   const saltRounds = 10;
   this.password = await bcrypt.hash(this.password, saltRounds);
-  next();
 });
+
 
 // helper to compare password
 userSchema.methods.comparePassword = function (plainPassword) {

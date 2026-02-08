@@ -7,11 +7,14 @@ app.use(express.json());
 // routes
 const authRoutes = require("./routes/auth.routes");
 const usersRoutes = require("./routes/users.routes");
-const resourceRoutes = require("./routes/resource.routes");
+const eventsRoutes = require("./routes/events.routes");
+const ticketsRoutes = require("./routes/tickets.routes");
+
 
 app.use("/", authRoutes);
 app.use("/", usersRoutes);
-app.use("/", resourceRoutes);
+app.use("/", ticketsRoutes);
+app.use(eventsRoutes);
 
 //test
 app.get("/health", (req, res) => {
