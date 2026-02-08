@@ -7,7 +7,15 @@ function isValidObjectId(id) {
 
 exports.createEvent = async (req, res, next) => {
   try {
-    const { title, description, category, date, location, ticketTypes } = req.body;
+    const {
+      title,
+      description,
+      category,
+      date,
+      location,
+      imageUrl,
+      ticketTypes
+    } = req.body;
 
     if (!title || !description || !date || !location || !Array.isArray(ticketTypes)) {
       return res.status(400).json({ message: "Missing required fields" });
@@ -19,6 +27,7 @@ exports.createEvent = async (req, res, next) => {
       category,
       date,
       location,
+      imageUrl,
       ticketTypes,
       createdBy: req.user.userId
     });

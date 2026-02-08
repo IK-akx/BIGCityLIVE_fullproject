@@ -28,6 +28,13 @@ const eventSchema = new mongoose.Schema(
     date: { type: Date, required: true },
     location: { type: String, required: true },
 
+    // 🖼️ image of event (URL)
+    imageUrl: {
+      type: String,
+      trim: true,
+      default: ""
+    },
+    
     ticketTypes: {
       type: [ticketTypeSchema],
       validate: [arr => arr.length > 0, "Event must have at least one ticket type"]
