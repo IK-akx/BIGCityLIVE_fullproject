@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BIG CITY LIVE</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="#/events">
+        <span class="brand__dot"></span>
+        <span>BIG CITY LIVE</span>
+      </a>
+
+      <nav class="nav">
+        <a class="nav__link" href="#/events">Events</a>
+        <a class="nav__link" href="#/profile" id="navProfile" style="display:none;">Profile</a>
+        <a class="nav__link" href="#/admin" id="navAdmin" style="display:none;">Admin</a>
+        <button class="btn btn--soft" id="btnAuth">Login</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="app"></section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© <span id="year"></span> BIG CITY LIVE</span>
+      <span class="muted">Team: Iskander Kustayev, Olzhas Omerzak, Bekbolat Yergaliuly</span>
+    </div>
+  </footer>
+
+  <script src="/scripts/api.js"></script>
+  <script src="/scripts/views/events.js"></script>
+  <script src="/scripts/views/eventDetails.js"></script>
+  <script src="/scripts/views/authView.js"></script>
+  <script src="/scripts/views/profile.js"></script>
+  <script src="/scripts/views/admin.js"></script>
+  <script src="/scripts/main.js"></script>
+</body>
+</html>

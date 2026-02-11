@@ -15,7 +15,7 @@ const ticketSchema = new mongoose.Schema(
       required: true
     },
 
-    ticketType: { type: String, required: true }, // VIP / Standard
+    ticketType: { type: String, required: true }, // VIP and standard 
     price: { type: Number, required: true },
     quantity: { type: Number, required: true, min: 1 },
 
