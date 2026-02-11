@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const { sendMail } = require("../utils/email.service");
 
 // simple validators (basic; later we can replace with Joi)
 function isValidEmail(email) {
@@ -46,8 +47,11 @@ exports.register = async (req, res, next) => {
       password,
       role: "user"
     });
-
+    
+    sendMail(normalizedEmail);
+    
     const token = signToken(user);
+
 
     return res.status(201).json({
       user: {
