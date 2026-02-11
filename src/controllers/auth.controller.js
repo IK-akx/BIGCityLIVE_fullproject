@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const { sendMail } = require("../utils/email.service");
 
-// simple validators (basic; later we can replace with Joi)
 function isValidEmail(email) {
   return typeof email === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -23,7 +22,6 @@ exports.register = async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
 
-    // basic validation
     if (
       typeof username !== "string" || username.trim().length < 2 ||
       !isValidEmail(email) ||
@@ -49,7 +47,7 @@ exports.register = async (req, res, next) => {
     });
     
     sendMail(normalizedEmail);
-    
+
     const token = signToken(user);
 
 
@@ -63,7 +61,6 @@ exports.register = async (req, res, next) => {
       token
     });
   } catch (err) {
-    // handle Mongo unique errors just in case
     if (err && err.code === 11000) {
       return res.status(409).json({ message: "Email already exists." });
     }
@@ -81,7 +78,6 @@ exports.login = async (req, res, next) => {
 
     const normalizedEmail = email.trim().toLowerCase();
 
-    // password is select:false in schema, so we must select it explicitly
     const user = await User.findOne({ email: normalizedEmail }).select("+password");
     if (!user) {
       return res.status(401).json({ message: "Invalid credentials." });

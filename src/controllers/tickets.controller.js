@@ -36,13 +36,11 @@ exports.createTicket = async (req, res, next) => {
       return res.status(400).json({ message: "Not enough tickets available" });
     }
 
-    // update sold count
     await Event.updateOne(
       { _id: eventId, "ticketTypes.name": ticketType },
       { $inc: { "ticketTypes.$.sold": qty } }
     );
 
-    // store price at purchase time
     const ticket = await Ticket.create({
       user: userId,
       event: eventId,

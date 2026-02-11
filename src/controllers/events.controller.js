@@ -49,7 +49,6 @@ exports.getEvents = async (req, res, next) => {
 
     let events = await Event.find(filter).sort({ date: 1 });
 
-    // optional price filter (by cheapest ticket type)
     if (minPrice || maxPrice) {
       events = events.filter(e => {
         const prices = e.ticketTypes.map(t => t.price);

@@ -49,7 +49,6 @@ const eventSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// virtual available tickets per type
 eventSchema.methods.getAvailableTickets = function (typeName) {
   const type = this.ticketTypes.find(t => t.name === typeName);
   if (!type) return 0;
@@ -57,3 +56,4 @@ eventSchema.methods.getAvailableTickets = function (typeName) {
 };
 
 module.exports = mongoose.model("Event", eventSchema);
+
